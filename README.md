@@ -1,6 +1,46 @@
 # Node Pebble
 
-A Node.js wrapper for Let’s Encrypt’s Pebble (a small RFC 8555 ACME test server not suited for a production certificate authority)
+A Node.js wrapper for Let’s Encrypt’s Pebble (a small RFC 8555 ACME test server not suited for a production certificate authority).
+
+## Platform support
+
+Currently only supports Linux AMD 64.
+
+## Installation
+
+```sh
+npm i @small-tech/node-pebble
+```
+
+## Usage
+
+```js
+const Pebble = require('node-pebble')
+
+const pebbleProcess = Pebble.spawn()
+
+pebbleProcess.on('error', (error) => {
+  console.log('[Pebble] Process error', error)
+})
+
+pebbleProcess.stdout.on('data', (data) => {
+  console.log(`[Pebble] ${data}`)
+})
+
+pebbleProcess.stderr.on('data', (data) => {
+  console.log(`[Pebble] Error ${data}`)
+})
+
+pebbleProcess.on('close', (code) => {
+  console.log('Pebble server process exited with code', code)
+})
+
+// Close the Pebble server after 5 seconds.
+setTimeout(() => {
+  pebbleProcess.kill()
+}, 5000)
+```
+
 
 ## Like this? Fund us!
 
