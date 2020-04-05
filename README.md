@@ -1,5 +1,7 @@
 # Node Pebble
 
+## Pre-release. Do not use yet.
+
 A Node.js wrapper for Let’s Encrypt’s Pebble (a small RFC 8555 ACME test server not suited for a production certificate authority).
 
 ## Platform support
