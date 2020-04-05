@@ -1,0 +1,28 @@
+{
+  "name": "@small-tech/pebble",
+  "version": "1.0.0",
+  "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (a small RFC 8555 ACME test server not suited for a production certificate authority)",
+  "main": "index.js",
+  "bin": "bin/site.js",
+  "scripts": {
+    "test": "QUIET=true tape test/*.js | tap-spec",
+    "coverage": "QUIET=true nyc tape test/*.js | tap-nyc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://source.small-tech.org/site.js/lib/node-pebble.git"
+  },
+  "author": {
+    "name": "Aral Balkan",
+    "email": "aral@small-tech.org",
+    "url": "https://ar.al"
+  },
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "nexe": "^3.3.2",
+    "nyc": "^14.1.1",
+    "tap-nyc": "^1.0.3",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0"
+  }
+}
