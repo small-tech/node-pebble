@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (“a small RFC 8555 ACME test server not suited for a production certificate authority”).",
   "main": "index.js",
-  "bin": "bin/site.js",
+  "os": ["linux", "win32"],
+  "cpu": ["x64"],
+  "funding": {
+    "type": "foundation",
+    "url": "https://small-tech.org/fund-us/"
+  },
   "scripts": {
     "test": "tape test/*.js | tap-spec",
     "coverage": "nyc tape test/*.js | tap-nyc"
