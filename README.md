@@ -4,7 +4,7 @@ A Node.js wrapper for Let’s Encrypt’s Pebble (a small RFC 8555 ACME test ser
 
 ## Platform support
 
-Currently only supports Linux AMD 64.
+Linux AMD 64.
 
 ## Installation
 
