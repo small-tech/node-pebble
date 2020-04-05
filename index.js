@@ -31,8 +31,12 @@ class Pebble {
       args = args.split(' ')
     }
 
-    const options = { env: Object.assign(process.env, env) }
-    const pebbleBinaryPath = path.join(__dirname, 'bin', 'pebble')
+    const binDirectoryPath = path.join(__dirname, 'bin')
+    const pebbleBinaryPath = path.join(binDirectoryPath, 'pebble')
+    const options = {
+      env: Object.assign(process.env, env),
+      cwd: binDirectoryPath
+    }
 
     const pebbleProcess = spawn(pebbleBinaryPath, args, options)
 
