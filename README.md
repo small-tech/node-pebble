@@ -18,7 +18,7 @@ npm i @small-tech/node-pebble
 ## API
 
 ```js
-const pebbleProcess = Pebble.spawn([args], [env])
+const pebbleProcess = await Pebble.spawn([args], [env])
 ```
 
 ### Parameters
@@ -36,7 +36,7 @@ const pebbleProcess = Pebble.spawn([args], [env])
 
 ### Return value
 
-`ChildProcess` instance of the spawned Pebble server instance.
+`Promise<ChildProcess>` a promise that is resolved to a reference of the spawned Pebble server instance once the Pebble server instance has finished booting. When this promise resolves, Pebble is ready to use.
 
 ## Default configuration
 
@@ -65,32 +65,13 @@ Pebble.spawn('-config customConfig.json')
 
 ## Basic example
 
-The following listing launches the Pebble server with its default settings, displays output and errors, and shuts the server down after 5 seconds have elapsed.
+The following listing launches the Pebble server with its default settings and then shuts it down.
 
 ```js
 const Pebble = require('node-pebble')
 
-const pebbleProcess = Pebble.spawn()
-
-pebbleProcess.on('error', (error) => {
-  console.log('[Pebble] Process error', error)
-})
-
-pebbleProcess.stdout.on('data', (data) => {
-  console.log(`[Pebble] ${data}`)
-})
-
-pebbleProcess.stderr.on('data', (data) => {
-  console.log(`[Pebble] Error ${data}`)
-})
-
-pebbleProcess.on('close', (code) => {
-  console.log('Pebble server process exited with code', code)
-})
-
-setTimeout(() => {
-  pebbleProcess.kill()
-}, 3000)
+const pebbleProcess = await Pebble.spawn()
+pebbleProcess.kill()
 ```
 
 ## Install development dependencies (for tests and coverage)

@@ -19,12 +19,12 @@ const spawn = childProcess.spawn
  */
 class Pebble {
   /**
-   * Spawns Pebble process and returns a reference to it.
+   * Promises to spawn a Pebble process and resolve the promise when the server is ready for use.
    *
    * @static
    * @args {[String[]]|String} Optional space-delimited list or array of arguments to pass to Pebble process.
    * @env {Object={ PEBBLE_VA_NOSLEEP: 1, PEBBLE_WFE_NONCEREJECT: 0 }} Optional  environment variables to set for Pebble process.
-   * @returns {ChildProcess} Reference to spawned child process. You’re responsible for managing its life-cycle.
+   * @returns {Promise<ChildProcess>} Promise to return spawned child process. You’re responsible for managing its life-cycle.
    */
   static spawn (args = [], env = { PEBBLE_VA_NOSLEEP: 1, PEBBLE_WFE_NONCEREJECT: 0 }) {
     // Spawn expects argument to be an array. Automatically convert a space-delimited arguments string to one.
@@ -43,7 +43,21 @@ class Pebble {
 
     const pebbleProcess = spawn(pebbleBinaryPath, args, options)
 
-    return pebbleProcess
+    let output = ''
+
+    return new Promise((resolve, reject) => {
+      const timeoutInterval = setTimeout(() => {
+        reject('Timed out while attempting to spawn Pebble server (waited 5 seconds).')
+      }, 5000)
+
+      pebbleProcess.stdout.on('data', data => {
+        output = `${output}${data}`
+        if (output.includes('ACME directory available at: https://0.0.0.0:14000/dir')) {
+          clearInterval(timeoutInterval)
+          resolve(pebbleProcess)
+        }
+      })
+    })
   }
 }
 
