@@ -2,9 +2,12 @@
 
 A Node.js wrapper for [Let’s Encrypt](https://letsencrypt.org)’s [Pebble](https://github.com/letsencrypt/pebble) (“a small RFC 8555 ACME test server not suited for a production certificate authority”).
 
-## Platform support
+## Version and platform support
 
-Linux AMD 64.
+Supports [Pebble version 2.3.0](https://github.com/letsencrypt/pebble/releases/tag/v2.3.0) on platforms with binary [Pebble releases](https://github.com/letsencrypt/pebble/releases/):
+
+  - Linux AMD 64.
+  - Windows AMD 64.
 
 ## Installation
 

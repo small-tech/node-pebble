@@ -8,7 +8,8 @@
  * @copyright © 2020 Aral Balkan, Small Technology Foundation
  * @license AGPL version 3.0 or later
  */
-const path = require('path')
+const os           = require('os')
+const path         = require('path')
 const childProcess = require('child_process')
 
 const spawn = childProcess.spawn
@@ -32,7 +33,9 @@ class Pebble {
     }
 
     const binDirectoryPath = path.join(__dirname, 'bin')
-    const pebbleBinaryPath = path.join(binDirectoryPath, 'pebble')
+    const pebbleBinaryName = `pebble${os.platform() === 'win32' ? '.exe' : ''}`
+    const pebbleBinaryPath = path.join(binDirectoryPath, pebbleBinaryName)
+
     const options = {
       env: Object.assign(process.env, env),
       cwd: binDirectoryPath

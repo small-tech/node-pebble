@@ -1,1 +1,2 @@
 bin/pebble filter=lfs diff=lfs merge=lfs -text
+bin/pebble.exe filter=lfs diff=lfs merge=lfs -text
