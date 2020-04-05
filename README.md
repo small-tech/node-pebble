@@ -22,18 +22,18 @@ Pebble.spawn([args], [env])
 
   - `args`: Optional array or space-delimited string of arguments to pass to the Pebble binary. By default, no arguments are passed.
 
-  - `env`: Optional object with additional environment variables to set for the Pebble process (see below for detailed discussion of defaults).
+  - `env`: Optional object with additional environment variables to set for the Pebble process.
 
-By default, the Pebble process will be run with the following settings, which are optimised for frequently run unit tests:
+    By default, the Pebble process will be run with the following settings, which are optimised for frequently run unit tests:
 
-### Default environment variables
+    - `PEBBLE_VA_NOSLEEP=1`
+    -  `PEBBLE_WFE_NONCEREJECT=0`
 
-  - `PEBBLE_VA_NOSLEEP=1`
-  -  `PEBBLE_WFE_NONCEREJECT=0`
+    You can also customise the default environment variables by simply passing them to the outer process that runs Node Pebble (for example, when specifying npm test tasks).
 
 ### Default configuration
 
-You can find the default configuration file in the __bin/test/config/pebble-config.json__ file:
+The default configuration file is at __bin/test/config/pebble-config.json__:
 
 ```json
 {
@@ -50,7 +50,7 @@ You can find the default configuration file in the __bin/test/config/pebble-conf
 }
 ```
 
-To customise the configuration, specify your own configuration file using the `-config` argument. e.g.,
+To customise the configuration, specify your own configuration file by passing the `-config` argument to the Pebble binary. e.g.,
 
 ```js
 Pebble.spawn('-config customConfig.json')
@@ -81,17 +81,10 @@ pebbleProcess.on('close', (code) => {
   console.log('Pebble server process exited with code', code)
 })
 
-// Close the Pebble server after 5 seconds.
 setTimeout(() => {
   pebbleProcess.kill()
 }, 5000)
 ```
-
-## Configuration
-
-You can pass
-
-To set the sleep
 
 ## Like this? Fund us!
 
