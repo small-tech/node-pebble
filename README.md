@@ -1,7 +1,5 @@
 # Node Pebble
 
-## Pre-release. Do not use yet.
-
 A Node.js wrapper for [Let’s Encrypt](https://letsencrypt.org)’s [Pebble](https://github.com/letsencrypt/pebble) (“a small RFC 8555 ACME test server not suited for a production certificate authority”).
 
 ## Platform support
@@ -17,8 +15,10 @@ npm i @small-tech/node-pebble
 ## API
 
 ```js
-Pebble.spawn([args], [env])
+const pebbleProcess = Pebble.spawn([args], [env])
 ```
+
+### Parameters
 
   - `args`: Optional array or space-delimited string of arguments to pass to the Pebble binary. By default, no arguments are passed.
 
@@ -31,7 +31,11 @@ Pebble.spawn([args], [env])
 
     You can also customise the default environment variables by simply passing them to the outer process that runs Node Pebble (for example, when specifying npm test tasks).
 
-### Default configuration
+### Return value
+
+`ChildProcess` instance of the spawned Pebble server instance.
+
+## Default configuration
 
 The default configuration file is at __bin/test/config/pebble-config.json__:
 
@@ -83,7 +87,25 @@ pebbleProcess.on('close', (code) => {
 
 setTimeout(() => {
   pebbleProcess.kill()
-}, 5000)
+}, 3000)
+```
+
+## Install development dependencies (for tests and coverage)
+
+```sh
+npm install
+```
+
+## Run test task
+
+```sh
+npm test
+```
+
+## Run coverage task
+
+```sh
+npm run coverage
 ```
 
 ## Like this? Fund us!
