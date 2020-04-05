@@ -14,7 +14,51 @@ Linux AMD 64.
 npm i @small-tech/node-pebble
 ```
 
-## Usage
+## API
+
+```js
+Pebble.spawn([args], [env])
+```
+
+  - `args`: Optional array or space-delimited string of arguments to pass to the Pebble binary. By default, no arguments are passed.
+
+  - `env`: Optional object with additional environment variables to set for the Pebble process (see below for detailed discussion of defaults).
+
+By default, the Pebble process will be run with the following settings, which are optimised for frequently run unit tests:
+
+### Default environment variables
+
+  - `PEBBLE_VA_NOSLEEP=1`
+  -  `PEBBLE_WFE_NONCEREJECT=0`
+
+### Default configuration
+
+You can find the default configuration file in the __bin/test/config/pebble-config.json__ file:
+
+```json
+{
+  "pebble": {
+    "listenAddress": "0.0.0.0:14000",
+    "managementListenAddress": "0.0.0.0:15000",
+    "certificate": "test/certs/localhost/cert.pem",
+    "privateKey": "test/certs/localhost/key.pem",
+    "httpPort": 80,
+    "tlsPort": 443,
+    "ocspResponderURL": "",
+    "externalAccountBindingRequired": false
+  }
+}
+```
+
+To customise the configuration, specify your own configuration file using the `-config` argument. e.g.,
+
+```js
+Pebble.spawn('-config customConfig.json')
+```
+
+## Basic example
+
+The following listing launches the Pebble server with its default settings, displays output and errors, and shuts the server down after 5 seconds have elapsed.
 
 ```js
 const Pebble = require('node-pebble')
@@ -43,6 +87,11 @@ setTimeout(() => {
 }, 5000)
 ```
 
+## Configuration
+
+You can pass
+
+To set the sleep
 
 ## Like this? Fund us!
 
