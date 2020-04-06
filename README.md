@@ -2,9 +2,15 @@
 
 A Node.js wrapper for [Let’s Encrypt](https://letsencrypt.org)’s [Pebble](https://github.com/letsencrypt/pebble) (“a small RFC 8555 ACME test server not suited for a production certificate authority”).
 
+  - Launches and manages a single Pebble process.
+
+  - Returns a reference to the same process on future calls (safe to include in multiple unit tests where order of tests is undetermined)
+
+  - Automatically patches Node.js’s TLS module to accept Pebble server’s [test certificate](https://github.com/letsencrypt/pebble#avoiding-client-https-errors) as well as its [dynamically-generated root and intermediary CA certificates](https://github.com/letsencrypt/pebble#ca-root-and-intermediate-certificates).
+
 ## Version and platform support
 
-Supports [Pebble version 2.3.0](https://github.com/letsencrypt/pebble/releases/tag/v2.3.0) on platforms with binary [Pebble releases](https://github.com/letsencrypt/pebble/releases/):
+Supports [Pebble version 2.3.0](https://github.com/letsencrypt/pebble/releases/tag/v2.3.0) under [Node.js LTS](https://nodejs.org/en/about/releases/) on platforms with binary [Pebble releases](https://github.com/letsencrypt/pebble/releases/):
 
   - Linux AMD 64.
   - Windows AMD 64.
@@ -17,11 +23,19 @@ npm i @small-tech/node-pebble
 
 ## API
 
+### Pebble.ready ([args], [env]) -> Promise<ChidProcess>
+
+Promises to get the Pebble server ready for use. Resolves once Pebble server is launched and ready and Node.js’s TLS module has been patched to accept Pebble server’s [test certificate](https://github.com/letsencrypt/pebble#avoiding-client-https-errors) as well as its [dynamically-generated root and intermediary CA certificates](https://github.com/letsencrypt/pebble#ca-root-and-intermediate-certificates).
+
+Note that while this method returns a reference to the Pebble child process, in normal use you should not have to care about the return value.
+
+#### Example
+
 ```js
-const pebbleProcess = await Pebble.spawn([args], [env])
+await Pebble.ready()
 ```
 
-### Parameters
+#### Parameters
 
   - `args`: Optional array or space-delimited string of arguments to pass to the Pebble binary. By default, no arguments are passed.
 
@@ -30,13 +44,19 @@ const pebbleProcess = await Pebble.spawn([args], [env])
     By default, the Pebble process will be run with the following settings, which are optimised for frequently run unit tests:
 
     - `PEBBLE_VA_NOSLEEP=1`
-    -  `PEBBLE_WFE_NONCEREJECT=0`
+    - `PEBBLE_WFE_NONCEREJECT=0`
 
     You can also customise the default environment variables by simply passing them to the outer process that runs Node Pebble (for example, when specifying npm test tasks).
 
-### Return value
+### Pebble.shutdown () -> Promise
 
-`Promise<ChildProcess>` a promise that is resolved to a reference of the spawned Pebble server instance once the Pebble server instance has finished booting. When this promise resolves, Pebble is ready to use.
+Promises to shut down the Pebble server. Resolves once server is closed.
+
+#### Example
+
+```js
+await Pebble.shutdown()
+```
 
 ## Default configuration
 
@@ -60,7 +80,7 @@ The default configuration file is at __bin/test/config/pebble-config.json__:
 To customise the configuration, specify your own configuration file by passing the `-config` argument to the Pebble binary. e.g.,
 
 ```js
-Pebble.spawn('-config customConfig.json')
+Pebble.ready('-config customConfig.json')
 ```
 
 ## Basic example
@@ -71,8 +91,21 @@ The following listing launches the Pebble server with its default settings and t
 const Pebble = require('..')
 
 async function main() {
-  const pebbleProcess = await Pebble.spawn()
-  pebbleProcess.kill()
+  console.log('\n⏳ Launching Pebble server…\n')
+
+  await Pebble.ready()
+
+  console.log('✔ Pebble server launched and ready.')
+  console.log('✔ Node.js’s TLS module patched to accept Pebble’s CA certificates.')
+
+  // Do stuff that requires Pebble here.
+  // …
+
+  console.log('\n⏳ Shutting down Pebble server…\n')
+
+  await Pebble.shutdown()
+
+  console.log('✔ Pebble server shut down.\n')
 }
 
 main()

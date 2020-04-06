@@ -2,15 +2,21 @@ const test = require('tape')
 const Pebble = require('..')
 
 test ('Node Pebble', async t => {
-  const pebbleProcess = await Pebble.spawn()
-
+  //
+  // Test initial launch.
+  //
+  const pebbleProcess = await Pebble.ready()
   t.pass('pebble process launches as expected')
 
-  pebbleProcess.on('close', (code) => {
-    t.pass('pebble process killed as expected')
-    t.end()
-  })
+  //
+  // Test future access while already running.
+  //
+  const pebbleProcess2 = await Pebble.ready()
+  t.strictEquals(pebbleProcess.pid, pebbleProcess2.pid, 'on repeated access, the same Pebble process is returned as expected')
 
-  pebbleProcess.kill()
+  // Test shutdown.
+  await Pebble.shutdown()
+  t.pass('pebble process killed as expected')
+
+  t.end()
 })
-

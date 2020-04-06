@@ -8,9 +8,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [3.0.0] - 2020-04-06
+
+### Changed
+
+  - Breaking change: new API: `await Pebble.ready()`
+  - The Pebble process itself (not the Pebble class) is now a singleton.
+
+### Added
+
+  - Automatic monkey patching of Node.js TLS module to accept Pebble certificates.
+  - New method: `Pebble.shutdown()`
+
 ## [2.0.0] - 2020-04-05
 
-### Changes
+### Changed
 
   - Breaking change: new asynchronous API
 

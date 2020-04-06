@@ -1,17 +1,35 @@
 {
   "name": "@small-tech/node-pebble",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (“a small RFC 8555 ACME test server not suited for a production certificate authority”).",
   "main": "index.js",
-  "os": ["linux", "win32"],
-  "cpu": ["x64"],
+  "os": [
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
   "funding": {
     "type": "foundation",
     "url": "https://small-tech.org/fund-us/"
   },
+  "keywords": [
+    "pebble",
+    "acme",
+    "le",
+    "let's encrypt",
+    "tls",
+    "rfc 8555"
+  ],
   "scripts": {
-    "test": "tape test/*.js | tap-spec",
-    "coverage": "nyc tape test/*.js | tap-nyc"
+    "test": "QUIET=true tape test/*.js | tap-spec",
+    "coverage": "QUIET=true nyc tape test/*.js | tap-nyc",
+    "test-debug": "tape test/*.js | tap-spec",
+    "coverage-debug": "nyc tape test/*.js | tap-nyc"
+  },
+  "nyc": {
+    "exclude": ["lib/util/*.js", "test/*.js"]
   },
   "repository": {
     "type": "git",
@@ -28,5 +46,9 @@
     "tap-nyc": "^1.0.3",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0"
+  },
+  "dependencies": {
+    "bent": "^7.1.2",
+    "fs-extra": "^9.0.0"
   }
 }
