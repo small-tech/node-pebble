@@ -68,10 +68,14 @@ Pebble.spawn('-config customConfig.json')
 The following listing launches the Pebble server with its default settings and then shuts it down.
 
 ```js
-const Pebble = require('node-pebble')
+const Pebble = require('..')
 
-const pebbleProcess = await Pebble.spawn()
-pebbleProcess.kill()
+async function main() {
+  const pebbleProcess = await Pebble.spawn()
+  pebbleProcess.kill()
+}
+
+main()
 ```
 
 ## Install development dependencies (for tests and coverage)
