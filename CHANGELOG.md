@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [3.0.2] - 2020-04-06
+
+### Changed
+
+  - Version bump to try and fix [npm publish bug with readme not appearing](https://npm.community/search?q=Unable%20to%20find%20a%20readme%20). No other changes.
+
 ## [3.0.1] - 2020-04-06
 
 ### Fixed
