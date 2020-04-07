@@ -24,11 +24,11 @@ class Pebble {
    * Promises to spawn a Pebble process and resolve the promise when the server is ready for use.
    *
    * @static
-   * @args {[String[]]|String} Optional space-delimited list or array of arguments to pass to Pebble process.
-   * @env {Object={ PEBBLE_VA_NOSLEEP: 1, PEBBLE_WFE_NONCEREJECT: 0 }} Optional  environment variables to set for Pebble process.
+   * @param args {[String[]|String]=[]} Optional space-delimited list or array of arguments to pass to Pebble process.
+   * @param env  {[Object={}]}          Optional environment variables to set for Pebble process.
    * @returns {Promise<ChildProcess>} Promise to return spawned child process.
    */
-  static async ready (args = [], env = { PEBBLE_VA_NOSLEEP: 1, PEBBLE_WFE_NONCEREJECT: 0 }) {
+  static async ready (args = [], env = {}) {
     if (this.#pebbleProcess !== null) {
       // Existing process exists, return that.
       return this.#pebbleProcess

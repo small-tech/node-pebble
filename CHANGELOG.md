@@ -8,6 +8,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [4.0.0] - 2020-04-07
+
+### Changed
+
+  - Breaking change: default environment variables are no longer customised. You must pass in custom variables manually.
+
+### Fixed
+
+  - Environment variables set in the outer process will now correctly apply to the Pebble server.
+
 ## [3.0.3] - 2020-04-07
 
 ### Fixed

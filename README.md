@@ -41,7 +41,7 @@ await Pebble.ready()
 
   - `env`: Optional object with additional environment variables to set for the Pebble process.
 
-    By default, the Pebble process will be run with the following settings, which are optimised for frequently run unit tests:
+    For frequently run unit tests, pass the following environment variables for fastest test run time. You may want to include less frequently-run test tasks without these settings for a more robust test harness.
 
     - `PEBBLE_VA_NOSLEEP=1`
     - `PEBBLE_WFE_NONCEREJECT=0`
