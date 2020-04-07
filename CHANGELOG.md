@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [3.0.3] - 2020-04-07
+
+### Fixed
+
+  - Improve optional argument handling in `ready()` method.
+
 ## [3.0.2] - 2020-04-06
 
 ### Changed

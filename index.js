@@ -29,10 +29,15 @@ class Pebble {
    * @returns {Promise<ChildProcess>} Promise to return spawned child process.
    */
   static async ready (args = [], env = { PEBBLE_VA_NOSLEEP: 1, PEBBLE_WFE_NONCEREJECT: 0 }) {
-
     if (this.#pebbleProcess !== null) {
       // Existing process exists, return that.
       return this.#pebbleProcess
+    }
+
+    if (arguments.length === 1 && Object.prototype.toString.call(args) === '[object Object]') {
+      // env was passed as the first (and only) argument
+      env = args
+      args = []
     }
 
     // Spawn expects argument to be an array. Automatically convert a space-delimited arguments string to one.
