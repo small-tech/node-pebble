@@ -71,7 +71,7 @@ The default configuration file is at __bin/test/config/pebble-config.json__:
     "privateKey": "test/certs/localhost/key.pem",
     "httpPort": 80,
     "tlsPort": 443,
-    "ocspResponderURL": "",
+    "ocspResponderURL": "http://localhost:8888",
     "externalAccountBindingRequired": false
   }
 }

@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [4.1.0] - 2020-04-08
+
+### Changed
+
+  - Specify http://localhost:8888 as the default OCSP responder URL that’s added to certificates.
+
 ## [4.0.0] - 2020-04-07
 
 ### Changed
