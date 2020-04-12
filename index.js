@@ -34,12 +34,19 @@ class Pebble {
       return this.#pebbleProcess
     }
 
+    let alreadyCrashingDueToUnhandledRejection = false
     process.on('unhandledRejection', async error => {
+
       delete process.env['QUIET']
-      log('\n 🚮 [Node Pebble] Unhandled rejection detected, shutting down Pebble server…\n\n', error, '\n')
-      await this.shutdown()
-      log('\n 💥 [Node Pebble] Crashing due to unhandled rejection. Goodbye!\n')
-      process.exit(1)
+      log('\n ❌ [Node Pebble] Unhandled rejection detected\n\n', error, '\n')
+
+      if (!alreadyCrashingDueToUnhandledRejection) {
+        alreadyCrashingDueToUnhandledRejection = true
+        log(' 🚮 [Node Pebble] Shutting down server… \n')
+        await this.shutdown()
+        log('\n 💥 [Node Pebble] Crashing due to unhandled rejection. Goodbye!\n')
+        process.exit(1)
+      }
     })
 
     if (arguments.length === 1 && Object.prototype.toString.call(args) === '[object Object]') {
@@ -105,7 +112,7 @@ class Pebble {
     return new Promise((resolve, reject) => {
       this.#pebbleProcess.on('close', () => {
         this.#pebbleProcess = null
-        log(' 👋 [Node Pebble] Pebble server process is closed.')
+        log(' 🚮 [Node Pebble] Pebble server process is closed.')
         resolve()
       })
       this.#pebbleProcess.kill()

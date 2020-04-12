@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [4.2.3] - 2020-04-12
+
+### Added
+
+  - Unhandled rejection handler now handles possibility of being called more than once before process shutdown is complete.
+
 ## [4.2.2] - 2020-04-12
 
 ### Changed
