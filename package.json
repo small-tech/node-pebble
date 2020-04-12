@@ -1,6 +1,6 @@
 {
   "name": "@small-tech/node-pebble",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (“a small RFC 8555 ACME test server not suited for a production certificate authority”).",
   "main": "index.js",
   "os": [
@@ -29,7 +29,10 @@
     "coverage-debug": "nyc tape test/*.js | tap-nyc"
   },
   "nyc": {
-    "exclude": ["lib/util/*.js", "test/*.js"]
+    "exclude": [
+      "lib/util/*.js",
+      "test/*.js"
+    ]
   },
   "repository": {
     "type": "git",

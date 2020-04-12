@@ -34,6 +34,11 @@ class Pebble {
       return this.#pebbleProcess
     }
 
+    process.on('unhandledRejection', async error => {
+      log(` 🚮 [Node Pebble] Unhandled rejection detected, shutting down Pebble server… (${error})`)
+      await this.shutdown()
+    })
+
     if (arguments.length === 1 && Object.prototype.toString.call(args) === '[object Object]') {
       // env was passed as the first (and only) argument
       env = args
@@ -97,6 +102,7 @@ class Pebble {
     return new Promise((resolve, reject) => {
       this.#pebbleProcess.on('close', () => {
         this.#pebbleProcess = null
+        log(' 👋 [Node Pebble] Pebble server process is closed.')
         resolve()
       })
       this.#pebbleProcess.kill()

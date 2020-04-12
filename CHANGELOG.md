@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [4.2.0] - 2020-04-12
+
+### Added
+
+  - Now automatically shuts down Pebble process if an unhandled rejection is detected.
+
 ## [4.1.0] - 2020-04-08
 
 ### Changed
