@@ -35,6 +35,7 @@ class Pebble {
     }
 
     process.on('unhandledRejection', async error => {
+      delete process.env['QUIET']
       log('\n 🚮 [Node Pebble] Unhandled rejection detected, shutting down Pebble server…\n\n', error, '\n')
       await this.shutdown()
       log('\n 💥 [Node Pebble] Crashing due to unhandled rejection. Goodbye!\n')

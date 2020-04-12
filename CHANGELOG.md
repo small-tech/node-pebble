@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 Nothing yet.
 
+## [4.2.2] - 2020-04-12
+
+### Changed
+
+  - Ignore QUIET environment variable in unhandled rejection handler so messages always display before a crash.
+
 ## [4.2.1] - 2020-04-12
 
 ### Changed
