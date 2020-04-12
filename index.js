@@ -35,8 +35,10 @@ class Pebble {
     }
 
     process.on('unhandledRejection', async error => {
-      log(` 🚮 [Node Pebble] Unhandled rejection detected, shutting down Pebble server… (${error})`)
+      log('\n 🚮 [Node Pebble] Unhandled rejection detected, shutting down Pebble server…\n\n', error, '\n')
       await this.shutdown()
+      log('\n 💥 [Node Pebble] Crashing due to unhandled rejection. Goodbye!\n')
+      process.exit(1)
     })
 
     if (arguments.length === 1 && Object.prototype.toString.call(args) === '[object Object]') {
