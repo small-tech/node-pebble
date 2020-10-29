@@ -45,10 +45,10 @@
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "nyc": "^14.1.1",
+    "nyc": "^15.1.0",
     "tap-nyc": "^1.0.3",
     "tap-spec": "^5.0.0",
-    "tape": "^4.11.0"
+    "tape": "^5.0.1"
   },
   "dependencies": {
     "bent": "^7.3.12",
