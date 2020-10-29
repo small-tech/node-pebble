@@ -51,7 +51,7 @@
     "tape": "^4.11.0"
   },
   "dependencies": {
-    "bent": "^7.1.2",
-    "fs-extra": "^9.0.0"
+    "bent": "^7.3.12",
+    "fs-extra": "^9.0.1"
   }
 }
