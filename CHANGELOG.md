@@ -10,6 +10,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - __Breaking change:__ Binaries are no longer bundled in the package. They are downloaded as an npm postinstall task.
   - Uses ECMAScript Modules (ESM; es6 modules).
+  - Dev: now using @small-tech/esm-tape-runner.
+  - Dev: now using c8 instead of nyc for coverage.
+  - Dev: replaced tap-spec and tap-nyc with @small-tech/tap-monkey.
 
 ## [4.2.4] - 2020-10-29
 

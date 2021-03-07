@@ -77,19 +77,18 @@ const binaryPath = path.join(__dirname, binaryName)
 
 console.log('  Node Pebble (postinstall)')
 console.log('  ────────────────────────────────────────────────────────────────────────')
+
 process.stdout.write(`   ╰─ Removing old Pebble binary (if any)… `)
-
 fs.rmSync(binaryPath, {force: true})
+process.stdout.write('done.\n')
 
-process.stdout.write(`   ╰─ Installing Pebble v${PEBBLE_VERSION} binary… `)
-
+process.stdout.write(`   ╰─ Downloading Pebble ${PEBBLE_VERSION} binary… `)
 const binaryRedirectUrl = (await secureGet(downloadUrl)).location
 await secureStreamToFile(binaryRedirectUrl, binaryPath)
+process.stdout.write('done.\n')
 
 process.stdout.write(`   ╰─ Making the binary executable… `)
-
-// Make the binary executable.
 fs.chmodSync(binaryPath, 0o755)
-
 process.stdout.write('done.\n')
+
 console.log('  ────────────────────────────────────────────────────────────────────────')

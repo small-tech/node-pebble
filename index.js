@@ -5,7 +5,7 @@
  * not suited for a production certificate authority”).
  *
  * @module
- * @copyright © 2020 Aral Balkan, Small Technology Foundation
+ * @Copyright © 2020 - 2021 Aral Balkan, Small Technology Foundation
  * @license AGPL version 3.0 or later
  */
 import os from 'os'
@@ -16,10 +16,12 @@ import MonkeyPatchTls from './lib/MonkeyPatchTls.js'
 
 const spawn = childProcess.spawn
 
+const __dirname = new URL('.', import.meta.url).pathname
+
 /**
  * @alias module
  */
-class Pebble {
+export default class Pebble {
   /**
    * Promises to spawn a Pebble process and resolve the promise when the server is ready for use.
    *
@@ -128,5 +130,3 @@ class Pebble {
   */
   static #pebbleProcess = null
 }
-
-module.exports = Pebble
