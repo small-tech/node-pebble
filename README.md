@@ -25,6 +25,8 @@ npm i @small-tech/node-pebble
 
 As part of the post-installation process, Node Pebble will download the correct Pebble binary for your platform for use at runtime.
 
+Node Pebble has zero runtime dependencies.
+
 ## API
 
 ### Pebble.ready ([args], [env]) -> Promise&lt;ChildProcess&gt;
