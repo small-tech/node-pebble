@@ -4,6 +4,11 @@
   "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (“a small RFC 8555 ACME test server not suited for a production certificate authority”).",
   "type": "module",
   "main": "index.js",
+  "files": [
+    "lib",
+    "bin/post-install.js",
+    "bin/test"
+  ],
   "os": [
     "linux",
     "win32"
