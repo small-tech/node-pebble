@@ -1,7 +1,7 @@
 /**
  * The Pebble Node example from the readme.
  */
-const Pebble = require('..')
+import Pebble from '../index.js'
 
 async function main() {
   console.log('\n ⏳ Launching Pebble server…\n')
