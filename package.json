@@ -2,6 +2,7 @@
   "name": "@small-tech/node-pebble",
   "version": "5.0.0",
   "description": "A Node.js wrapper for Let’s Encrypt’s Pebble (“a small RFC 8555 ACME test server not suited for a production certificate authority”).",
+  "type": "module",
   "main": "index.js",
   "os": [
     "linux",
@@ -24,12 +25,12 @@
   ],
   "scripts": {
     "postinstall": "bin/post-install.js",
-    "test": "QUIET=true tape test/*.js | tap-spec",
-    "coverage": "QUIET=true nyc tape test/*.js | tap-nyc",
-    "test-debug": "tape test/*.js | tap-spec",
-    "coverage-debug": "nyc tape test/*.js | tap-nyc"
+    "test": "QUIET=true esm-tape-runner test/*.js | tap-monkey",
+    "coverage": "QUIET=true c8 esm-tape-runner test/*.js | tap-monkey",
+    "test-debug": "tape test/*.js | tap-monkey",
+    "coverage-debug": "nyc tape test/*.js | tap-monkey"
   },
-  "nyc": {
+  "c8": {
     "exclude": [
       "lib/util/*.js",
       "test/*.js"
@@ -46,9 +47,8 @@
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "nyc": "^15.1.0",
-    "tap-nyc": "^1.0.3",
-    "tap-spec": "https://github.com/small-tech/tap-spec",
+    "@small-tech/esm-tape-runner": "^1.0.3",
+    "@small-tech/tap-monkey": "^1.3.0",
     "tape": "^5.0.1"
   },
   "dependencies": {

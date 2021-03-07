@@ -8,11 +8,11 @@
  * @copyright © 2020 Aral Balkan, Small Technology Foundation
  * @license AGPL version 3.0 or later
  */
-const os             = require('os')
-const path           = require('path')
-const childProcess   = require('child_process')
-const log            = require('./lib/util/log')
-const MonkeyPatchTls = require('./lib/MonkeyPatchTls')
+import os from 'os'
+import path from 'path'
+import childProcess from 'child_process'
+import log from './lib/util/log.js'
+import MonkeyPatchTls from './lib/MonkeyPatchTls.js'
 
 const spawn = childProcess.spawn
 

@@ -1,5 +1,5 @@
-const test = require('tape')
-const Pebble = require('..')
+import test from 'tape'
+import Pebble from '../index.js'
 
 test ('Node Pebble', async t => {
   //
