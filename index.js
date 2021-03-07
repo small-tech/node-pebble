@@ -5,7 +5,7 @@
  * not suited for a production certificate authority”).
  *
  * @module
- * @Copyright © 2020 - 2021 Aral Balkan, Small Technology Foundation
+ * @Copyright © 2020-2021 Aral Balkan, Small Technology Foundation
  * @license AGPL version 3.0 or later
  */
 import os from 'os'
